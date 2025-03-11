@@ -344,4 +344,6 @@ public class FinanceApp {
                 System.out.println("Неверный ввод.");
         }
     }
+    
+    //Testing some changes
 }
