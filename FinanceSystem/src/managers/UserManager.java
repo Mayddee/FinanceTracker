@@ -55,7 +55,7 @@ public class UserManager {
 	
 	// Редактируем профайл пользователя
 	public void editUserProfile(String name, String email, String password) {
-	    User currentUser = AuthService.getCurrentUser();
+	    User currentUser = user;
 	    if (currentUser == null) {
 	        System.out.println("Ошибка: Вы не вошли в систему!");
 	        return;
@@ -77,11 +77,11 @@ public class UserManager {
 	
 	//Создаем новую транзакцию
 	
-	public void createTransaction(Double sum, String type, String category) {
+	public Transaction createTransaction(Double sum, String type, String category) {
 	    User currentUser = getCurrentUser();  
 	    if (currentUser == null) {
 	        System.out.println("Ошибка: Пользователь не найден!");
-	        return;
+	        return null;
 	    }
 
 	    Transaction transaction;
@@ -91,7 +91,7 @@ public class UserManager {
 	    } else {
 	        if (user.getBalance() < sum) {
 	            System.out.println("Не хватает средств для совершения транзакции!");
-	            return;
+	            return null;
 	        }
 	        transaction = new Transaction(user.getId(), sum, category, TransactionType.EXPENSE);
 	        user.setBalance(user.getBalance() - sum);
@@ -104,6 +104,7 @@ public class UserManager {
 	    if (transaction.getType() == TransactionType.EXPENSE) {
 	        checkBudget(); // Проверяем бюджет после добавления расхода
 	    }
+	    return transaction;
 	}
 	
 	// Редактируем транзакцию и обновляем баланс при изменении суммы

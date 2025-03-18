@@ -40,27 +40,31 @@ public class AuthService {
     }
 
     public static void logout() {
-        if (currentUser != null) {
+//        if (currentUser != null) {
             currentUser = null;
             System.out.println("Выход из системы успешно выполнен!");
-        }
+//        }
     }
     
-    public static void registerUser(String name, String email, String password) {
+    public static User registerUser(String name, String email, String password) {
+    	User user = null;
         try {
             if (UserRepository.getInstance().userExists(email)) {
                 throw new Exception("Пользователь с таким email уже существует!");
             }
 
-            User user = new User(name, email, password);
+            user = new User(name, email, password);
             UserRepository.getInstance().addUser(user);
 
             System.out.println("Регистрация успешна! Добро пожаловать, " + user.getName());
-
+            
+            
            
         } catch (Exception e) {
             System.out.println("Ошибка регистрации: " + e.getMessage());
         }
+    	return user;
+        
     }
 
   

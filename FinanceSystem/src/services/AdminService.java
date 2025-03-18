@@ -9,10 +9,15 @@ import database.UserRepository;
 import models.Transaction;
 import models.User;
 public class AdminService {
-    private final UserRepository userRepository = UserRepository.getInstance();
-    private final TransactionRepository transactionRepository = TransactionRepository.getInstance();
+    private final UserRepository userRepository;
+    private final TransactionRepository transactionRepository;
 
-    // Отображение всех пользователей и их транзакций
+    // ✅ Constructor Injection for testing
+    public AdminService(UserRepository userRepository, TransactionRepository transactionRepository) {
+        this.userRepository = userRepository;
+        this.transactionRepository = transactionRepository;
+    }
+
     public void displayAllUsersWithTransactions() {
         Map<String, User> users = userRepository.getAllUsers();
         Map<String, List<Transaction>> transactions = transactionRepository.getTransactions();
@@ -39,7 +44,6 @@ public class AdminService {
             System.out.println("-------------------------------");
         }
     }
-
     // Метод для блокировки пользователя
     public void blockUser(String userId) {
         User user = userRepository.getAllUsers().get(userId);
