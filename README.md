@@ -48,7 +48,7 @@ FinanceTracker is a console-based multi-user financial management application wr
 - Unit tests cover at least 75% of the code using JUnit5, Mockito, and AssertJ
 
 ## Prerequisites
-- Java Development Kit (JDK) 8 or later
+- Java Development Kit (JDK) 17 or later
 - Eclipse IDE (or any Java-compatible IDE)
 
 ## Installation
@@ -60,7 +60,36 @@ FinanceTracker is a console-based multi-user financial management application wr
 3. Select **File** > **Import** > **Existing Projects into Workspace**.
 4. Choose the root directory of the project and click **Finish**.
 5. Ensure the Java compiler compliance level is set correctly in **Project Properties > Java Compiler**.
-6. Run the `FinanceTracker.java` file.
+6. Run the `FinanceApp.java` file.
+
+## Project Structure
+```
+FinanceSystem/
+│── src/
+│   ├── App/
+│   │   ├── FinanceApp.java
+│   │   ├── FinanceAppTest.java
+│   ├── database/
+│   │   ├── GoalRepository.java
+│   │   ├── TransactionRepository.java
+│   │   ├── UserRepository.java
+│   ├── managers/
+│   │   ├── UserManager.java
+│   │   ├── UserManagerTest.java
+│   ├── models/
+│   ├── services/
+│   │   ├── AdminService.java
+│   │   ├── AuthService.java
+│   │   ├── AuthServiceTest.java
+│   │   ├── NotificationService.java
+│   ├── supports/
+│   │   ├── GoalPriorityComparator.java
+│   │   ├── Observer.java
+│   │   ├── TransactionCategoryComparator.java
+│   │   ├── TransactionType.java
+│   ├── test/java/services/
+│── README.md
+```
 
 ## Usage
 When the program starts, users can interact with the menu to register, log in, and manage their finances.
@@ -79,19 +108,6 @@ Welcome to FinanceTracker!
 Enter your choice:
 ```
 
-## Project Structure
-```
-FinanceTracker/
-│── src/
-│   ├── FinanceTracker.java   # Main application
-│   ├── User.java             # User entity class
-│   ├── Transaction.java      # Transaction entity class
-│   ├── Budget.java           # Budget management
-│   ├── Goal.java             # Goal tracking
-│   ├── Admin.java            # Admin functionalities
-│── README.md                 # Documentation
-```
-
 ## Contributing
 Contributions are welcome! Fork the repository and submit pull requests to improve the project.
 
@@ -103,4 +119,3 @@ For questions or suggestions, feel free to open an issue on GitHub.
 
 ---
 Give the project a ⭐ if you find it useful!
-
